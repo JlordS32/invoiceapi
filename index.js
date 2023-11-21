@@ -1,19 +1,14 @@
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
+// Import packages
+const express = require('express');
+const invoice = require('./routes/invoices');
 
-const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 8080;
+// Middlewares
+const app = express();
+app.use(express.json());
 
-server.use(middlewares);
-server.use(router);
+// Routes
+app.use('/invoices', invoice);
 
-server.listen(port, (err) => {
-	if (err) {
-		console.error('Error starting server:', err);
-	} else {
-		console.log(`JSON Server is running on port ${port}`);
-	}
-});
-
-module.exports = server;
+// connection
+const port = process.env.PORT || 9001;
+app.listen(port, () => console.log(`Listening to port ${port}`));
