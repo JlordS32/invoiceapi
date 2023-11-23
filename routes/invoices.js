@@ -280,7 +280,7 @@ const validateInvoiceData = (req, res, next) => {
 	const isValidID = invoices.some((item) => item.id === req.body.id);
 	if (!isValidID) {
 		return res.status(400).json({
-			message: 'ID already exists!',
+			message: 'Cannot send an ID that already exists!',
 		});
 	}
 
