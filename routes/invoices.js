@@ -328,7 +328,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new invoice
-router.post('/', validateInvoiceData, async (req, res, next) => {
+router.post('/', validateInvoiceData, async (req, res) => {
 	const newInvoice = req.body;
 	invoices.push(newInvoice);
 	return res.status(201).json({
@@ -338,7 +338,7 @@ router.post('/', validateInvoiceData, async (req, res, next) => {
 });
 
 // DELETE invoice by ID
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', async (req, res) => {
 	const invoiceId = req.params.id;
 	const index = invoices.findIndex((inv) => inv.id === invoiceId);
 	if (index !== -1) {
