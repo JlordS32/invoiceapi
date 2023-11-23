@@ -275,8 +275,14 @@ const validateInvoiceData = (req, res, next) => {
 		'senderAddress',
 		'clientAddress',
 		'items',
-		'total',
 	];
+
+	const isValidID = invoices.every((item) => item.id === req.body.id);
+	if (!isValidID) {
+		return res.status(400).json({
+			message: 'ID already exists!',
+		});
+	}
 
 	// Add additional validation for the status field
 	const validStatusValues = ['draft', 'paid', 'pending']; // Add other valid values if needed
@@ -292,7 +298,7 @@ const validateInvoiceData = (req, res, next) => {
 
 	if (req.body.status === 'pending' && !isValidInvoice) {
 		return res.status(400).json({
-			message: 'Cannot send a pending invoice without items.',
+			message: 'Cannot send a pending invoice filling all fields.',
 		});
 	}
 
