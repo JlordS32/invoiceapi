@@ -262,6 +262,43 @@ let invoices = [
 	},
 ];
 
+const validateInvoiceData = (req, res, next) => {
+	const expectedKeys = [
+		'id',
+		'createdAt',
+		'paymentDue',
+		'description',
+		'paymentTerms',
+		'clientName',
+		'clientEmail',
+		'status',
+		'senderAddress',
+		'clientAddress',
+		'items',
+		'total',
+	];
+
+	// Add additional validation for the status field
+	const validStatusValues = ['draft', 'paid', 'pending']; // Add other valid values if needed
+	if (!validStatusValues.includes(req.body.status)) {
+		return res.status(400).json({
+			message: 'Invalid status value. Allowed values: draft, paid, pending.',
+		});
+	}
+
+	const isValidInvoice = expectedKeys.every((key) =>
+		req.body.hasOwnProperty(key)
+	);
+
+	if (req.body.status === 'pending' && !isValidInvoice) {
+		return res.status(400).json({
+			message: 'Cannot send a pending invoice without items.',
+		});
+	}
+
+	next();
+};
+
 router.get('/', async (_, res) => {
 	return res.status(200).json({
 		invoices: invoices,
@@ -285,8 +322,8 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new invoice
-router.post('/', async (req, res, next) => {
-	const newInvoice = req.body; // Assuming the request body contains the new invoice data
+router.post('/', validateInvoiceData, async (req, res, next) => {
+	const newInvoice = req.body;
 	invoices.push(newInvoice);
 	return res.status(201).json({
 		message: 'Invoice created successfully',
