@@ -262,6 +262,16 @@ let invoices = [
 	},
 ];
 
+const validateIDExists = (req, res, next) => {
+	const IDExists = invoices.some((item) => item.id === req.body.id);
+	if (IDExists) {
+		return res.status(400).json({
+			message: 'Cannot send an ID that already exists!',
+		});
+	}
+
+	next();
+};
 const validateInvoiceData = (req, res, next) => {
 	const expectedKeys = [
 		'id',
@@ -277,13 +287,6 @@ const validateInvoiceData = (req, res, next) => {
 		'items',
 	];
 
-	const IDExists = invoices.some((item) => item.id === req.body.id);
-	if (IDExists) {
-		return res.status(400).json({
-			message: 'Cannot send an ID that already exists!',
-		});
-	}
-
 	// Add additional validation for the status field
 	const validStatusValues = ['draft', 'paid', 'pending']; // Add other valid values if needed
 	if (!validStatusValues.includes(req.body.status)) {
@@ -298,7 +301,7 @@ const validateInvoiceData = (req, res, next) => {
 
 	if (req.body.status === 'pending' && !isValidInvoice) {
 		return res.status(400).json({
-			message: 'Cannot send a pending invoice filling all fields.',
+			message: 'Cannot send a pending invoice without filling all fields.',
 		});
 	}
 
@@ -328,13 +331,36 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new invoice
-router.post('/', validateInvoiceData, async (req, res) => {
+router.post('/', validateIDExists, validateInvoiceData, async (req, res) => {
 	const newInvoice = req.body;
 	invoices.push(newInvoice);
 	return res.status(201).json({
 		message: 'Invoice created successfully',
 		invoice: newInvoice,
 	});
+});
+
+// POST new invoice by ID
+router.post('/:id', validateInvoiceData, async (req, res) => {
+	const invoiceId = req.params.id;
+	const updatedInvoice = req.body;
+
+	// Find the index of the invoice with the specified ID
+	const index = invoices.findIndex((inv) => inv.id === invoiceId);
+
+	if (index !== -1) {
+		// Update the existing invoice with the new data
+		invoices[index] = { ...invoices[index], ...updatedInvoice };
+
+		return res.status(200).json({
+			message: 'Invoice updated successfully',
+			invoice: invoices[index],
+		});
+	} else {
+		return res.status(404).json({
+			message: 'Invoice not found',
+		});
+	}
 });
 
 // DELETE invoice by ID
