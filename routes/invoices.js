@@ -27,10 +27,8 @@ let invoices = [
 				name: 'Brand Guidelines',
 				quantity: 1,
 				price: 1800.9,
-				total: 1800.9,
 			},
 		],
-		total: 1800.9,
 	},
 	{
 		id: 'XM9141',
@@ -58,16 +56,13 @@ let invoices = [
 				name: 'Banner Design',
 				quantity: 1,
 				price: 156,
-				total: 156,
 			},
 			{
 				name: 'Email Design',
 				quantity: 2,
 				price: 200,
-				total: 400,
 			},
-		],
-		total: 556,
+		]
 	},
 	{
 		id: 'RG0314',
@@ -94,11 +89,9 @@ let invoices = [
 			{
 				name: 'Website Redesign',
 				quantity: 1,
-				price: 14002.33,
-				total: 14002.33,
+				price: 14002.33
 			},
-		],
-		total: 14002.33,
+		]
 	},
 	{
 		id: 'RT2080',
@@ -125,11 +118,9 @@ let invoices = [
 			{
 				name: 'Logo Sketches',
 				quantity: 1,
-				price: 102.04,
-				total: 102.04,
+				price: 102.04
 			},
-		],
-		total: 102.04,
+		]
 	},
 	{
 		id: 'AA1449',
@@ -156,17 +147,14 @@ let invoices = [
 			{
 				name: 'New Logo',
 				quantity: 1,
-				price: 1532.33,
-				total: 1532.33,
+				price: 1532.33
 			},
 			{
 				name: 'Brand Guidelines',
 				quantity: 1,
-				price: 2500,
-				total: 2500,
+				price: 2500
 			},
-		],
-		total: 4032.33,
+		]
 	},
 	{
 		id: 'TY9141',
@@ -193,11 +181,9 @@ let invoices = [
 			{
 				name: 'Web Design',
 				quantity: 1,
-				price: 6155.91,
-				total: 6155.91,
+				price: 6155.91
 			},
-		],
-		total: 6155.91,
+		]
 	},
 	{
 		id: 'FV2353',
@@ -224,11 +210,9 @@ let invoices = [
 			{
 				name: 'Logo Re-design',
 				quantity: 1,
-				price: 3102.04,
-				total: 3102.04,
+				price: 3102.04
 			},
-		],
-		total: 3102.04,
+		]
 	},
 	{
 		id: 'FBLDI4',
