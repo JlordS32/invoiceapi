@@ -258,7 +258,6 @@ const validateIDExists = (req, res, next) => {
 };
 const validateInvoiceData = (req, res, next) => {
 	const expectedKeys = [
-		'id',
 		'createdAt',
 		'paymentDue',
 		'description',
