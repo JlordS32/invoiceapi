@@ -345,6 +345,13 @@ router.post('/:id', validateInvoiceData, async (req, res) => {
 	const invoiceId = req.params.id;
 	const updatedInvoice = req.body;
 
+	// Check if req.body.id exists
+	if (updatedInvoice.id) {
+		return res.status(400).json({
+			message: 'Updating ID is not allowed!',
+		});
+	}
+
 	// Find the index of the invoice with the specified ID
 	const index = invoices.findIndex((inv) => inv.id === invoiceId);
 
