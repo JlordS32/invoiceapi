@@ -354,6 +354,16 @@ router.post('/:id', validateInvoiceData, async (req, res) => {
 	const index = invoices.findIndex((inv) => inv.id === invoiceId);
 
 	if (index !== -1) {
+		// validate status
+		if (
+			invoices[index].status === 'draft' &&
+			updatedInvoice.status === 'paid'
+		) {
+			return res.status(400).json({
+				message: 'Cannot update a draft invoice to paid',
+			});
+		}
+
 		// Update the existing invoice with the new data
 		invoices[index] = { ...invoices[index], ...updatedInvoice };
 
