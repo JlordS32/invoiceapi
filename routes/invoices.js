@@ -259,7 +259,7 @@ const validateIDExists = (req, res, next) => {
 const hasID = (req, res, next) => {
 	if (!req.body.id) {
 		return res.status(400).json({
-			message: 'Cannot send an ID that already exists!',
+			message: 'No ID was found in the body!',
 		});
 	}
 
