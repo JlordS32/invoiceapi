@@ -325,7 +325,6 @@ const generateItemID = (req, res, next) => {
 	next();
 };
 
-
 router.get('/', async (_, res) => {
 	return res.status(200).json({
 		invoices: invoices,
@@ -366,7 +365,7 @@ router.post(
 );
 
 // POST new invoice by ID
-router.post('/:id', validateInvoiceData, async (req, res) => {
+router.post('/:id', validateInvoiceData, generateItemID, async (req, res) => {
 	const invoiceId = req.params.id;
 	const updatedInvoice = req.body;
 
