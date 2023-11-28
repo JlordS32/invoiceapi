@@ -24,6 +24,7 @@ let invoices = [
 		},
 		items: [
 			{
+				id: '7a332d13-39d6-45bd-a819-99dbe553ec5a',
 				name: 'Brand Guidelines',
 				quantity: 1,
 				price: 1800.9,
@@ -53,11 +54,13 @@ let invoices = [
 		},
 		items: [
 			{
+				id: '844d89f5-106a-455d-8c22-1f2d7b0e3f55',
 				name: 'Banner Design',
 				quantity: 1,
 				price: 156,
 			},
 			{
+				id: '091322d8-a730-4a73-8659-352b22123c67',
 				name: 'Email Design',
 				quantity: 2,
 				price: 200,
@@ -87,6 +90,7 @@ let invoices = [
 		},
 		items: [
 			{
+				id: '12385a31-c48f-4134-bf51-5924e45642bc',
 				name: 'Website Redesign',
 				quantity: 1,
 				price: 14002.33,
@@ -116,6 +120,7 @@ let invoices = [
 		},
 		items: [
 			{
+				id: 'c1a38125-2710-4c06-9242-22248488e94f',
 				name: 'Logo Sketches',
 				quantity: 1,
 				price: 102.04,
@@ -145,11 +150,13 @@ let invoices = [
 		},
 		items: [
 			{
+				id: 'a25e36b8-c35b-4954-8a3e-db4928af34ce',
 				name: 'New Logo',
 				quantity: 1,
 				price: 1532.33,
 			},
 			{
+				id: '5c2f4e28-6543-4c72-9d00-fbd7dab98b03',
 				name: 'Brand Guidelines',
 				quantity: 1,
 				price: 2500,
@@ -179,6 +186,7 @@ let invoices = [
 		},
 		items: [
 			{
+				id: '5555cedb-7b7b-42a5-a0d2-df527725b3fd',
 				name: 'Web Design',
 				quantity: 1,
 				price: 6155.91,
@@ -208,6 +216,7 @@ let invoices = [
 		},
 		items: [
 			{
+				id: '1302afc5-43e4-47c9-854e-e4cd5de7ef3e',
 				name: 'Logo Re-design',
 				quantity: 1,
 				price: 3102.04,
