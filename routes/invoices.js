@@ -300,6 +300,23 @@ const validateInvoiceData = (req, res, next) => {
 	next();
 };
 
+const generateItemID = (_, res, next) => {
+	const items = res.body.item;
+
+	const newItem = items.map((item) => {
+		if (!item.id) {
+			const newId = crypto.randomUUID().toString(); // Corrected the method call
+			return { ...item, id: newId };
+		}
+		return item;
+	}) ?? [];
+
+	res.body.item = newItem; // Update the items in the response body
+
+	next();
+};
+
+
 router.get('/', async (_, res) => {
 	return res.status(200).json({
 		invoices: invoices,
@@ -328,6 +345,7 @@ router.post(
 	hasID,
 	validateIDExists,
 	validateInvoiceData,
+	generateItemID,
 	async (req, res) => {
 		const newInvoice = req.body;
 		invoices.push(newInvoice);
