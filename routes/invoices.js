@@ -320,7 +320,7 @@ const generateItemID = (_, res, next) => {
 		return item;
 	}) ?? [];
 
-	res.body.item = newItem; // Update the items in the response body
+	res.body.item = newItem;
 
 	next();
 };
@@ -354,7 +354,6 @@ router.post(
 	hasID,
 	validateIDExists,
 	validateInvoiceData,
-	generateItemID,
 	async (req, res) => {
 		const newInvoice = req.body;
 		invoices.push(newInvoice);
