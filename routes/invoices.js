@@ -310,7 +310,7 @@ const validateInvoiceData = (req, res, next) => {
 };
 
 const generateItemID = (req, res, next) => {
-	const items = res.body.items;
+	const items = req.body.items;
 
 	const newItem = items.map((item) => {
 		if (!item.id) {
@@ -320,7 +320,7 @@ const generateItemID = (req, res, next) => {
 		return item;
 	});
 
-	res.body.items = newItem;
+	req.body.items = newItem;
 
 	next();
 };
