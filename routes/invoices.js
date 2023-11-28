@@ -314,7 +314,7 @@ const generateItemID = (req, res, next) => {
 
 	const newItem = items.map((item) => {
 		if (!item.id) {
-			const newId = crypto.randomUUID().toString();
+			const newId = crypto.randomUUID();
 			return { ...item, id: newId };
 		}
 		return item;
