@@ -310,7 +310,7 @@ const validateInvoiceData = (req, res, next) => {
 };
 
 const generateItemID = (req, res, next) => {
-	const items = req.body.items;
+	const items = req.body.items ?? [];
 
 	const newItem = items.map((item) => {
 		if (!item.id) {
