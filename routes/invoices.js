@@ -309,16 +309,16 @@ const validateInvoiceData = (req, res, next) => {
 	next();
 };
 
-const generateItemID = (_, res, next) => {
+const generateItemID = (req, res, next) => {
 	const items = res.body.item;
 
 	const newItem = items.map((item) => {
 		if (!item.id) {
-			const newId = crypto.randomUUID().toString(); // Corrected the method call
+			const newId = crypto.randomUUID().toString();
 			return { ...item, id: newId };
 		}
 		return item;
-	}) ?? [];
+	});
 
 	res.body.item = newItem;
 
@@ -354,6 +354,7 @@ router.post(
 	hasID,
 	validateIDExists,
 	validateInvoiceData,
+	generateItemID,
 	async (req, res) => {
 		const newInvoice = req.body;
 		invoices.push(newInvoice);
